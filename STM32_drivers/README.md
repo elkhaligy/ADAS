@@ -1,4 +1,2 @@
-# include Directory
-- Contains driver header files (.h)
-# src directory
-- Contains driver source files (.c)
+| INCLUDE DIRECTORY | Contains driver header files (.h)   |
+| SRC DIRCTORY | Contains driver source files (.c) |
