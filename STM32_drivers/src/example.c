@@ -4,7 +4,7 @@
 // Interfaces of MCAL
 #include "GPIO_interface.h"
 #include "RCC_interface.h"
-
+// trying 
 /** MAIN **/
 int main(void) {
     // System clock initialize to high speed external clock
