@@ -53,7 +53,7 @@ u8 GPIO_GetPinValue(u8 Port, u8 Pin) {
     return ReturnValue;
 }
 
-void GPIO_voidPortMaskWrite(u8 Port, u16 Mask, u16 Value) {
+void GPIO_PortMaskWrite(u8 Port, u16 Mask, u16 Value) {
 
     switch (Port) {
     case GPIO_PORTA:

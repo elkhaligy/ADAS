@@ -1,7 +1,6 @@
 #ifndef GPIO_INTERFACE_H_
 #define GPIO_INTERFACE_H_
 
-/*------------------------------PUBLIC MACROS------------------------------*/
 #define GPIO_PORTA 0
 #define GPIO_PORTB 1
 #define GPIO_PORTC 2
@@ -30,10 +29,10 @@ typedef enum {
 
 // PIN MODE MACROS
 // INPUT MODE
-#define GPIO_INPUT_ANALOG 0b0000       // ANALOG INPUT
-#define GPIO_INPUT_FLOATING 0b0100     // FLOATING INPUT
-#define GPIO_INPUT_PULLING 0b1000      // PULLING INPUT
-                                       // OUTPUT MODE
+#define GPIO_INPUT_ANALOG 0b0000   // ANALOG INPUT
+#define GPIO_INPUT_FLOATING 0b0100 // FLOATING INPUT
+#define GPIO_INPUT_PULLING 0b1000  // PULLING INPUT
+// OUTPUT MODE
 #define GPIO_OUTPUT_GP_PP_10MHZ 0b0001 // OUTPUT 10MHZ General Purpose Push-Pull
 #define GPIO_OUTPUT_GP_PP_2MHZ 0b0010  // OUTPUT 02MHZ General Purpose Push-Pull
 #define GPIO_OUTPUT_GP_PP_50MHZ 0b0011 // OUTPUT 50MHZ General Purpose Push-Pull
@@ -49,8 +48,6 @@ typedef enum {
 #define GPIO_OUTPUT_ALT_OD_10MHZ 0b1101 // OUTPUT 10MHZ Alternating Function Open-Drain
 #define GPIO_OUTPUT_ALT_OD_2MHZ 0b1110  // OUTPUT 02MHZ Alternating Function Open-Drain
 #define GPIO_OUTPUT_ALT_OD_50MHZ 0b1111 // OUTPUT 50MHZ Alternating Function Open-Drain
-
-/*------------------------------PUBLIC FUNCTIONS------------------------------*/
 
 /**
  * @brief Set pin mode of operation on a specific port
@@ -76,14 +73,14 @@ u8 GPIO_GetPinValue(u8 Port, u8 Pin);
  * @param Mask
  * @param Value
  */
-void GPIO_voidPortMaskWrite(u8 Port, u16 Mask, u16 Value);
+void GPIO_PortMaskWrite(u8 Port, u16 Mask, u16 Value);
 
 /**
  * @brief  Set pin value to high or low
- * 
- * @param Port 
- * @param Pin 
- * @param Value 
+ *
+ * @param Port
+ * @param Pin
+ * @param Value
  */
 void GPIO_SetPinValue(u8 Port, u8 Pin, u8 Value);
 
