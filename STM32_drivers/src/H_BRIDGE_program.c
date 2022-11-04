@@ -18,7 +18,7 @@ void H_BRIDGE_SetDirection(u8 Direction){
 			break;
 		case RIGHT:
 			GPIO_SetPinValue(H_BRIDGE_PORT,H_BRIDGE_CONTROL_0,GPIO_HIGH);
-			DIO_voidSetPinValue(H_BRIDGE_PORT,H_BRIDGE_CONTROL_1,GPIO_LOW);	
+			GPIO_SetPinValue(H_BRIDGE_PORT,H_BRIDGE_CONTROL_1,GPIO_LOW);	
 			break;
 		case LEFT:
 			GPIO_SetPinValue(H_BRIDGE_PORT,H_BRIDGE_CONTROL_0,GPIO_LOW);
