@@ -15,6 +15,10 @@ int main(void) {
     GPIO_SetPinMode(GPIO_PORTA, PIN0, GPIO_OUTPUT_GP_PP_2MHZ);
     // Set portA pin0 value to low
     GPIO_SetPinValue(GPIO_PORTA, PIN0, 0);
+
+    GPIO_SetPinValue(GPIO_PORTA, PIN0, 0);
+    GPIO_SetPinValue(GPIO_PORTA, PIN0, 0);
+    GPIO_SetPinValue(GPIO_PORTA, PIN0, 0);
     while (1)
         ;
 
