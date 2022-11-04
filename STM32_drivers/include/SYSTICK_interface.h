@@ -1,68 +1,64 @@
-/*
- * SYSTICK_interface.h
- *
- *  Created on: Aug 10, 2022
- *      Author: omar
- */
-
 #ifndef SYSTICK_INTERFACE_H_
 #define SYSTICK_INTERFACE_H_
 
-//Macros
+// Macros
 
-#define SYSTICK_AHB_8 		0
-#define SYSTICK_AHB 		1
+#define SYSTICK_AHB_8 0
+#define SYSTICK_AHB 1
 
-/*
- * STK_voidInit
- * description: Selects the clock source of the SysTick (AHB, AHB/8)
+/**
+ * @brief Selects the clock source of the SysTick (AHB, AHB/8)
+ *
+ * @param ClkSRC
  */
+void TICK_Init(u8 ClkSRC);
 
-void STK_Init(u8 ClkSRC);
-
-/*
- * STK_voidStopTimer
- * description: Stops the Timer
+/**
+ * @brief Stops the timer
+ *
  */
+void TICK_Stop(void);
 
-void STK_StopTimer(void);
-
-/*
- * STK_voidSetBusyWait
- * description: Starts a synchronous wait (delay)
+/**
+ * @brief Starts synchronous busy wait
+ *
+ * @param Millis
  */
+void TICK_Delay(u32 Millis);
 
-void STK_SetBusyWait(u32 MillisecCount);
-
-/*
- * STK_voidSetPeriodicInterval
- * description: Starts a periodic interval asynchronous wait
+/**
+ * @brief Starts a periodic wait (asynchronous)
+ *
+ * @param Millis
+ * @param ptr
  */
-
-void STK_SetPeriodicInterval(u32 MillisecCount, void (*ptr)(void));
+void TICK_PeriodicInterval(u32 Millis, void (*ptr)(void));
 
 /*
  * STK_voidSetSingleInterval
  * description: Starts a single interval asynchronous wait
  */
 
-void STK_SetSingleInterval(u32 MillisecCount, void (*ptr)(void));
-
-/*
- * STK_u32GetRemainingTicks
- * description: Gets the number of ticks remaining until we reach zero
+/**
+ * @brief Stats a single interval wait (asynchronous)
+ *
+ * @param Millis
+ * @param ptr
  */
+void TICK_SingleInterval(u32 Millis, void (*ptr)(void));
 
-u32 STK_GetRemainingTicks(void);
-
-/*
- * STK_u32GetElapsedTicks
- * description: Gets the number of ticks elapsed since we started counting
+/**
+ * @brief Gets the number of ticks remaining until we reach zero
+ *
+ * @return u32
  */
+u32 TICK_RemainingTicks(void);
 
-u32 STK_GetElapsedTicks(void);
-
-
-
+/**
+ * @brief Gets the number of ticks elapsed since we started counting
+ *
+ * @return u32
+ */
+u32 TICK_ElapsedTicks(void);
 
 #endif /* SYSTICK_INTERFACE_H_ */
