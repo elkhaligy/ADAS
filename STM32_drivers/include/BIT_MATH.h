@@ -9,7 +9,7 @@
 #define BIT_MATH_H_
 
 
-#define SET_BIT(VAR, BIT)   (VAR|=(0x01<<BIT)) //VAR =VAR|1<<BIT //Parenthesis Important
+#define SET_BIT(VAR, BIT)   (VAR|=(0x01<<BIT)) //Trying Commenting
 #define CLR_BIT(VAR, BIT)   (VAR&=~(0x01<<BIT))
 #define GET_BIT(VAR, BIT)   ((VAR>>BIT)&0x01)
 #define TOG_BIT(VAR, BIT)   (VAR ^=(1<<BIT))
