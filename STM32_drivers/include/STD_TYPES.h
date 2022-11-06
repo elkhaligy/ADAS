@@ -15,6 +15,8 @@ typedef signed   char      s8  ;
 typedef signed   short int s16 ;
 typedef signed   int       s32 ;
 
+#define NULL '/0'
+
 // u: unsigned - s: signed - f: float
 // 8,16,32: number of bits
 
