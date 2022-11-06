@@ -73,6 +73,13 @@ void TICK_SingleInterval(u32 Millis, void (*ptr)(void)) {
     SET_BIT(SYSTICK->CTRL, 0);
 }
 
+void TICK_StartCounting(void){
+    IntervalState = SYSTICK_SINGLE_INTERVAL;
+    SYSTICK->LOAD = 0xFFFFFF;
+    SET_BIT(SYSTICK->CTRL, 1);
+    SET_BIT(SYSTICK->CTRL, 0);
+}
+
 u32 TICK_RemainingTicks(void) {
     u32 temp1 = 0;
     temp1 = SYSTICK->VAL;

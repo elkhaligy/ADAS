@@ -61,4 +61,7 @@ u32 TICK_RemainingTicks(void);
  */
 u32 TICK_ElapsedTicks(void);
 
+
+void TICK_StartCounting(void);
+
 #endif /* SYSTICK_INTERFACE_H_ */
