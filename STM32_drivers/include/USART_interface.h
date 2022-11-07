@@ -1,16 +1,10 @@
-/*
- * USART_interface.h
- *
- *  Created on: Aug 20, 2022
- *      Author: Sirito
- */
 
 #ifndef USART_INTERFACE_H_
 #define USART_INTERFACE_H_
 
 #define BAUD_RATE_9600 0x341
 #define BAUD_RATE_115200 0x45
-
+#define USART_TxPin PIN9
 #define USART_1 0
 #define USART_2 1
 #define USART_3 2

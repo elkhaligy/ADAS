@@ -18,8 +18,8 @@ int main(void) {
     RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
     // Enable USART 1 clock
     RCC_PeripheralClockEnable(RCC_APB2, RCC_USART1);
-    
-    GPIO_SetPinMode(GPIO_PORTA, USART_Tx, GPIO_OUTPUT_ALT_OD_2MHZ);
+
+    GPIO_SetPinMode(GPIO_PORTA, USART_TxPin , GPIO_OUTPUT_ALT_OD_2MHZ);
     GPIO_SetPinMode(GPIO_PORTA, PIN0, GPIO_INPUT_PULLING);
     GPIO_SetPinMode(GPIO_PORTA, PIN1, GPIO_OUTPUT_GP_PP_2MHZ);
 
