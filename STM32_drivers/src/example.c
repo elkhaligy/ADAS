@@ -33,7 +33,7 @@ int main(void) {
     // Enable EXTI0 interrupt
     NVIC_voidEnableInterrupt(6);
 
-    USART_SetBaudRate(BAUD_RATE_9600);
+    USART_SetBaudRate(BAUD_RATE_9600,USART_1);
     USART_EnableUSART(USART_1);
 
     u8 a = 0;
