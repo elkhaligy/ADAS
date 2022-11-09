@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "ultrasonic_config.h": "c",
-        "h_bridge_interface.h": "c"
-    }
-}
