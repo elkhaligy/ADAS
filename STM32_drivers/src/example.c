@@ -1,15 +1,15 @@
 // Libraries
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
+#include "LIBRARY/BIT_MATH.h"
+#include "LIBRARY/STD_TYPES.h"
 // Interfaces of MCAL
-#include "GPIO_interface.h"
-#include "RCC_interface.h"
-#include "SYSTICK_interface.h"
-#include "EXTI_interface.h"
-#include "NVIC_interface.h"
-#include "USART_interface.h"
-#include "TIMER_interface.h"
-#include "TIMER_private.h"
+#include "GPIO/GPIO_interface.h"
+#include "RCC/RCC_interface.h"
+#include "SYSTICK/SYSTICK_interface.h"
+#include "EXTI/EXTI_interface.h"
+#include "NVIC/NVIC_interface.h"
+#include "USART/USART_interface.h"
+#include "TIMER/TIMER_interface.h"
+#include "TIMER/TIMER_private.h"
 
 int main(void) {
     // System clock initialize to high speed external clock
@@ -46,7 +46,7 @@ int main(void) {
     while (1){
         while(CH1_DC<655355){
             TIM2_PER->CCR1_REG |= CH1_DC;
-            CH1_DC += 1000;
+            CH1_DC += 2000;
             TICK_Delay(1000);
         }
         // GPIO_SetPinValue(GPIO_PORTA, PIN1, 1);

@@ -5,13 +5,12 @@
  *      Author: Omar Gamal
  */
 
+#include "LIBRARY/BIT_MATH.h"
+#include "LIBRARY/STD_TYPES.h"
 
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
-
-#include "EXTI_interface.h"
-#include "EXTI_private.h"
-#include "EXTI_config.h"
+#include "EXTI/EXTI_interface.h"
+#include "EXTI/EXTI_private.h"
+#include "EXTI/EXTI_config.h"
 
 
 

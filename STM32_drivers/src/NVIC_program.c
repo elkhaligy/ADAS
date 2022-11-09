@@ -5,12 +5,12 @@
  *      Author: Omar Gamal
  */
 
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
+#include "LIBRARY/BIT_MATH.h"
+#include "LIBRARY/STD_TYPES.h"
 
-#include "NVIC_interface.h"
-#include "NVIC_private.h"
-#include "NVIC_config.h"
+#include "NVIC/NVIC_interface.h"
+#include "NVIC/NVIC_private.h"
+#include "NVIC/NVIC_config.h"
 
 
 

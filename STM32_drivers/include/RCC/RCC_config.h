@@ -1,6 +1,6 @@
 
-#ifndef RCC_CONFIG_H_
-#define RCC_CONFIG_H_
+#ifndef RCC_CONFIG
+#define RCC_CONFIG
 // configurable register values (single value) (for multivalues check interface)
 
 // RCC_CR register values (Register->Bits->Value set)
@@ -24,4 +24,4 @@
 
 
 
-#endif /* RCC_CONFIG_H_ */
+#endif /* RCC_CONFIG */

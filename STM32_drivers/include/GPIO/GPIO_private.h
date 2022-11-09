@@ -5,8 +5,8 @@
  *      Author: Potato
  */
 
-#ifndef GPIO_PRIVATE_H_
-#define GPIO_PRIVATE_H_
+#ifndef GPIO_PRIVATE
+#define GPIO_PRIVATE
 
 // NAME_TYPE
 
@@ -38,4 +38,4 @@ typedef struct{
 
 
 
-#endif /* GPIO_PRIVATE_H_ */
+#endif /* GPIO_PRIVATE */

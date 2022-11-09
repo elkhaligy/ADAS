@@ -1,12 +1,12 @@
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
-#include"GPIO_interface.h"
-#include"RCC_interface.h"
-#include"SYSTICK_interface.h"
-#include"NVIC_interface.h"
-#include"EXTI_interface.h"
-#include"UltraSonic_config.h"
-#include"UltraSonic_interface.h"
+#include "LIBRARY/STD_TYPES.h"
+#include "LIBRARY/BIT_MATH.h"
+#include"GPIO/GPIO_interface.h"
+#include"RCC/RCC_interface.h"
+#include"SYSTICK/SYSTICK_interface.h"
+#include"NVIC/NVIC_interface.h"
+#include"EXTI/EXTI_interface.h"
+#include"ULTRASONIC/UltraSonic_config.h"
+#include"ULTRASONIC/UltraSonic_interface.h"
 
 u32 Ticks=0;
 

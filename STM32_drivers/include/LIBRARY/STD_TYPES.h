@@ -5,8 +5,8 @@
  *      Author: Potato
  */
 
-#ifndef STD_TYPES_H_
-#define STD_TYPES_H_
+#ifndef STD_TYPES
+#define STD_TYPES
 
 typedef unsigned char      u8  ;
 typedef unsigned short int u16 ;
@@ -20,4 +20,4 @@ typedef signed   int       s32 ;
 // u: unsigned - s: signed - f: float
 // 8,16,32: number of bits
 
-#endif /* STD_TYPES_H_ */
+#endif /* STD_TYPES */

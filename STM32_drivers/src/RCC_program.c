@@ -2,15 +2,15 @@
 // include 1.libraries - 2.interface of lower layers - 3.own driver files
 
 // libraries
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
+#include "LIBRARY/BIT_MATH.h"
+#include "LIBRARY/STD_TYPES.h"
 
 // interface of lower layers (empty) (already lowest)
 
 // own driver files
-#include <RCC_config.h>
-#include <RCC_interface.h>
-#include <RCC_private.h>
+#include <RCC/RCC_config.h>
+#include <RCC/RCC_interface.h>
+#include <RCC/RCC_private.h>
 
 void RCC_Init(void) {
     // RCC_CR -> HSION

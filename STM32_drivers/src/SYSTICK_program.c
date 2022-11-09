@@ -1,8 +1,8 @@
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
-#include "SYSTICK_config.h"
-#include "SYSTICK_interface.h"
-#include "SYSTICK_private.h"
+#include "LIBRARY/BIT_MATH.h"
+#include "LIBRARY/STD_TYPES.h"
+#include "SYSTICK/SYSTICK_config.h"
+#include "SYSTICK/SYSTICK_interface.h"
+#include "SYSTICK/SYSTICK_private.h"
 
 void (*CallBack)(void) = (void *)0;
 u8 IntervalState = SYSTICK_PERIODIC_INTERVAL;

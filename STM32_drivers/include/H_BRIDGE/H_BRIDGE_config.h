@@ -1,9 +1,9 @@
-#ifndef _H_BRIDGE_CONFIG_H
-#define _H_BRIDGE_CONFIG_H
+#ifndef H_BRIDGE_CONFIG
+#define H_BRIDGE_CONFIG
 
 #define H_BRIDGE_PORT GPIO_PORTA
 
 #define H_BRIDGE_CONTROL_0 PIN0
 #define H_BRIDGE_CONTROL_1 PIN1
 
-#endif
+#endif /* H_BRIDGE_CONFIG */
