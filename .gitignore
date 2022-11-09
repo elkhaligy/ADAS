@@ -2,3 +2,4 @@
 .vscode
 test
 lib
+STM32_drivers/.gitignore
