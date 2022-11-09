@@ -1,1 +1,5 @@
-STM32_drivers/src/Github Repository.code-workspace
+.pio
+.vscode
+test
+lib
+STM32_drivers/.gitignore
