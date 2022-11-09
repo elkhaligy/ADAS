@@ -5,11 +5,11 @@
  *      Author: Sirito
  */
 
-#ifndef USART_CONFIG_H_
-#define USART_CONFIG_H_
+#ifndef USART_CONFIG
+#define USART_CONFIG
 
 
 
 
 
-#endif /* USART_CONFIG_H_ */
+#endif /* USART_CONFIG */

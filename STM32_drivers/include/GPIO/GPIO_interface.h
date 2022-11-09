@@ -1,5 +1,5 @@
-#ifndef GPIO_INTERFACE_H_
-#define GPIO_INTERFACE_H_
+#ifndef GPIO_INTERFACE
+#define GPIO_INTERFACE
 
 #define GPIO_PORTA 0
 #define GPIO_PORTB 1
@@ -84,4 +84,4 @@ void GPIO_PortMaskWrite(u8 Port, u16 Mask, u16 Value);
  */
 void GPIO_SetPinValue(u8 Port, u8 Pin, u8 Value);
 
-#endif
+#endif /* GPIO_INTERFACE */

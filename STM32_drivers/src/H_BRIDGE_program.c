@@ -1,8 +1,8 @@
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
-#include "GPIO_interface.h"
-#include "H_BRIDGE_config.h"
-#include "H_BRIDGE_interface.h"
+#include "LIBRARY/STD_TYPES.h"
+#include "LIBRARY/BIT_MATH.h"
+#include "GPIO/GPIO_interface.h"
+#include "H_BRIDGE/H_BRIDGE_config.h"
+#include "H_BRIDGE/H_BRIDGE_interface.h"
 
 
 void H_BRIDGE_Initialize(){

@@ -1,9 +1,9 @@
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
+#include "LIBRARY/BIT_MATH.h"
+#include "LIBRARY/STD_TYPES.h"
 
-#include "GPIO_config.h"
-#include "GPIO_interface.h"
-#include "GPIO_private.h"
+#include "GPIO/GPIO_config.h"
+#include "GPIO/GPIO_interface.h"
+#include "GPIO/GPIO_private.h"
 
 void GPIO_SetPinMode(u8 Port, PINS Pin, u8 Mode) {
     switch (Port) {

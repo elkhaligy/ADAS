@@ -1,12 +1,12 @@
 // libraries
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
+#include "LIBRARY/STD_TYPES.h"
+#include "LIBRARY/BIT_MATH.h"
 // interface of lower layer (empty)
 
 // own driver files
-#include "USART_interface.h"
-#include "USART_config.h"
-#include "USART_private.h"
+#include "USART/USART_interface.h"
+#include "USART/USART_config.h"
+#include "USART/USART_private.h"
 
 void USART_SetBaudRate(u16 port_val, u8 USART_NUM) {
 	switch (USART_NUM) {
