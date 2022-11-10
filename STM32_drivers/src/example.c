@@ -36,17 +36,17 @@ int main(void) {
     //NVIC_voidEnableInterrupt(6);
     // USART_SetBaudRate(BAUD_RATE_9600,USART_1);
     //USART_EnableUSART(USART_1);
+    //u8 a = 0;
     u32 CH1_DC = 0;
     TIM2_Init(TIM_CHANNEL_1);
-    u8 a = 0;
     while (1){
         while(CH1_DC<65535){
-            TIM_PWMSet(CH1_DC,TIM_CHANNEL_1);
+            TIM2_PWMSet(CH1_DC,TIM_CHANNEL_1);
             CH1_DC += 2000;
             TICK_Delay(1000);
         }
         while(CH1_DC > 0){
-            TIM_PWMSet(CH1_DC,TIM_CHANNEL_1);
+            TIM2_PWMSet(CH1_DC,TIM_CHANNEL_1);
             CH1_DC -= 2000;
             TICK_Delay(1000);
         }
