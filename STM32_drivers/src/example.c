@@ -40,9 +40,14 @@ int main(void) {
     TIM2_Init(TIM_CHANNEL_1);
     u8 a = 0;
     while (1){
-        while(CH1_DC<655355){
+        while(CH1_DC<65535){
             TIM_PWMSet(CH1_DC,TIM_CHANNEL_1);
             CH1_DC += 2000;
+            TICK_Delay(1000);
+        }
+        while(CH1_DC > 0){
+            TIM_PWMSet(CH1_DC,TIM_CHANNEL_1);
+            CH1_DC -= 2000;
             TICK_Delay(1000);
         }
         // GPIO_SetPinValue(GPIO_PORTA, PIN1, 1);
