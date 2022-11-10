@@ -12,10 +12,23 @@ In PWM mode (1 or 2),TIMx_CNT and TIMx_CCRx are always compared to determine whe
 (depending on the direction of the counter).
 */
 
+#define    TIM_CHANNEL_1    0
+#define    TIM_CHANNEL_2    1
+#define    TIM_CHANNEL_3    2
+#define    TIM_CHANNEL_4    3
+
 /**
- * @brief Initializing the timer
+ * @brief Initializing the timer2
  * 
  */
-void TIM_Init(void);
-void TIM_PWMSet(u32 PWM);
+
+void TIM2_Init(u8 TIM_CHANNEL);
+
+/**
+ * @brief Setting the duty of the PWM for a certain channel in timer2
+ * 
+ */
+
+void TIM2_PWMSet(u32 PWM, u8 TIM_CHANNEL);
+
 #endif /* TIMER_INTERFACE */

@@ -25,28 +25,29 @@ int main(void) {
 
     // GPIO_SetPinMode(GPIO_PORTA, USART_TxPin , GPIO_OUTPUT_ALT_OD_2MHZ);
     GPIO_SetPinMode(GPIO_PORTA, PIN0, GPIO_OUTPUT_ALT_OD_2MHZ);
-   // GPIO_SetPinMode(GPIO_PORTA, PIN1, GPIO_OUTPUT_GP_PP_2MHZ);
-
+    // GPIO_SetPinMode(GPIO_PORTA, PIN1, GPIO_OUTPUT_GP_PP_2MHZ);
     GPIO_SetPinValue(GPIO_PORTA, PIN0, 0);
-  //  GPIO_SetPinValue(GPIO_PORTA, PIN1, 0);
-
+    //  GPIO_SetPinValue(GPIO_PORTA, PIN1, 0);
     // Interrupt line 0 (PIN A0)
-   // EXTI_void_ControlInterruptLine(0, EXTI_LINE_ENABLE);
+    // EXTI_void_ControlInterruptLine(0, EXTI_LINE_ENABLE);
     // Interrupt trigger type
     //EXTI_void_SelectLineTriggerType(0, EXTI_LineTrigger_RISING);
     // Enable EXTI0 interrupt
     //NVIC_voidEnableInterrupt(6);
-
-   // USART_SetBaudRate(BAUD_RATE_9600,USART_1);
+    // USART_SetBaudRate(BAUD_RATE_9600,USART_1);
     //USART_EnableUSART(USART_1);
+    //u8 a = 0;
     u32 CH1_DC = 0;
-    TIM_Init();
-    //TIM_PWMSet(30000);
-    u8 a = 0;
+    TIM2_Init(TIM_CHANNEL_1);
     while (1){
-        while(CH1_DC<655355){
-            TIM2_PER->CCR1_REG |= CH1_DC;
+        while(CH1_DC<65535){
+            TIM2_PWMSet(CH1_DC,TIM_CHANNEL_1);
             CH1_DC += 2000;
+            TICK_Delay(1000);
+        }
+        while(CH1_DC > 0){
+            TIM2_PWMSet(CH1_DC,TIM_CHANNEL_1);
+            CH1_DC -= 2000;
             TICK_Delay(1000);
         }
         // GPIO_SetPinValue(GPIO_PORTA, PIN1, 1);
