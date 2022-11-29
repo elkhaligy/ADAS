@@ -2,11 +2,9 @@
 #define _H_BRIDGE_INTERFACE_H
 
 // Directions
-#define STOP 0
-#define RIGHT 1
-#define LEFT 2
-
-//################# prototypes ########################
+#define Stop 0
+#define Forward 1
+#define Reverse 2
 
 /**
  * @brief set the control pins as output
@@ -20,4 +18,5 @@ void H_BRIDGE_Initialize();
  */
 void H_BRIDGE_SetDirection(u8 Direction);
 
+void H_BRIDGE_SetSpeed(u8 speedPercentage);
 #endif
