@@ -2,11 +2,9 @@
 #define _H_BRIDGE_INTERFACE_H
 
 // Directions
-#define STOP 0
-#define RIGHT 1
-#define LEFT 2
-
-//################# prototypes ########################
+#define Stop 0
+#define Forward 1
+#define Reverse 2
 
 /**
  * @brief set the control pins as output
