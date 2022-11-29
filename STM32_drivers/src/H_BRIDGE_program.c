@@ -16,6 +16,7 @@ void H_BRIDGE_Initialize()
 	// for speed control
 	RCC_PeripheralClockEnable(RCC_APB1, RCC_TIM2);
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_AFIO);
+	RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
 	GPIO_SetPinMode(GPIO_PORTA, H_BRIDGE_PIN_EA, GPIO_OUTPUT_ALT_PP_10MHZ);
 	TIMER_Init(TIMER2, TIMER_CHANNEL_1);
 }
