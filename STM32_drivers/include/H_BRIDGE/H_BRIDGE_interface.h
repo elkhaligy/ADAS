@@ -18,4 +18,5 @@ void H_BRIDGE_Initialize();
  */
 void H_BRIDGE_SetDirection(u8 Direction);
 
+void H_BRIDGE_SetSpeed(u8 speedPercentage);
 #endif
