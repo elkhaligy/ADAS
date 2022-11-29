@@ -48,15 +48,19 @@ void TIM2_Init(u8 TIM_CHANNEL){
 void TIM2_PWMSet(u32 PWM, u8 TIM_CHANNEL){
     switch (TIM_CHANNEL) {
 	case TIM_CHANNEL_1:
+        TIM2_PER->CCR1_REG &= 0x0000;
         TIM2_PER->CCR1_REG |= PWM;  //Load the compare value
 		break;
 	case TIM_CHANNEL_2:
+        TIM2_PER->CCR2_REG &= 0x0000;
         TIM2_PER->CCR2_REG |= PWM;
 		break;
 	case TIM_CHANNEL_3:
+        TIM2_PER->CCR3_REG &= 0x0000;
         TIM2_PER->CCR3_REG |= PWM;
 		break;
 	case TIM_CHANNEL_4:
+        TIM2_PER->CCR4_REG &= 0x0000;
         TIM2_PER->CCR4_REG |= PWM;
 		break;
 	}
