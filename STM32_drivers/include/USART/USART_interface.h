@@ -28,5 +28,6 @@ void USART_SendString(u8 USART_NUM,u8 *String);
 
 //Other Functions
 void USART_ClearRXNE(u8 USART_NUM);
+void USART_Start(u16 port_val, u8 USART_NUM);
 
 #endif /* USART_INTERFACE_H_ */
