@@ -11,28 +11,29 @@
 u32 Ticks=0;
 
 void UltrSonic_INIT(void){
-
     TICK_Init(SYSTICK_AHB_8);
-    RCC_Init();
+    //RCC_Init();
     RCC_PeripheralClockEnable(RCC_APB2, UltraSonic_PORT_RCC);
 
     GPIO_SetPinMode(UltraSonic_PORT_GPIO,PIN_Trigger, GPIO_OUTPUT_GP_PP_10MHZ);
-    GPIO_SetPinMode(UltraSonic_PORT_GPIO,PIN_ECHO, GPIO_INPUT_PULLING);
+
+
+    //GPIO_SetPinMode(UltraSonic_PORT_GPIO,PIN_ECHO, GPIO_INPUT_PULLING);
+    GPIO_SetPinMode(GPIO_PORTA, 0, GPIO_INPUT_PULLING);
+
+    EXTI_void_ControlInterruptLine(0, EXTI_LINE_ENABLE);
 
     NVIC_voidEnableInterrupt(6);
 }
 
 void UltraSonic_Trigger(void){
-
     GPIO_SetPinValue(UltraSonic_PORT_GPIO, PIN_Trigger, GPIO_HIGH);
-    TICK_Delay(1);  // how to use interrupt
+    TICK_Delay(50);  // how to use interrupt
     GPIO_SetPinValue(UltraSonic_PORT_GPIO, PIN_Trigger, GPIO_LOW);
 }
 
 void UltraSonic_StartECHO(void){
-
-    EXTI_void_SelectLineTriggerType(PIN_ECHO, EXTI_LineTrigger_RISING);
-
+    EXTI_void_SelectLineTriggerType(0, EXTI_LineTrigger_RISING);
 }
 
 u32 UltrSonic_GetDistance(void){
@@ -48,7 +49,7 @@ void EXTI0_IRQHandler(void)
     static u8 f=0;
     if(f==0){
         TICK_StartCounting();
-        EXTI_void_SelectLineTriggerType(PIN_ECHO, EXTI_LineTrigger_FALLING);
+        EXTI_void_SelectLineTriggerType(0, EXTI_LineTrigger_FALLING);
         f=1;
     }
     else if(f==1){

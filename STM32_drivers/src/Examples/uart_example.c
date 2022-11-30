@@ -7,7 +7,7 @@
 #include "TIMER/TIMER_interface.h"
 #include "H_BRIDGE/H_BRIDGE_interface.h"
 
-int main(void)
+int main3(void)
 {
     RCC_Init(); // system internal clock
     USART_Start(BAUD_RATE_115200, USART_1);
