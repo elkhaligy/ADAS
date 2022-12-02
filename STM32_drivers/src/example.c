@@ -51,8 +51,6 @@ int main(void)
 
 void EXTI0_IRQHandler(void)
 {
-    static u8 x = 0;
-
     static u8 f = 0;
     if (f == 0)
     {
