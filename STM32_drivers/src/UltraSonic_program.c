@@ -28,7 +28,7 @@ void UltrSonic_INIT(void){
 
 void UltraSonic_Trigger(void){
     GPIO_SetPinValue(UltraSonic_PORT_GPIO, PIN_Trigger, GPIO_HIGH);
-    //TICK_Delay(10);  // how to use interrupt
+    TICK_Delay(10);  // how to use interrupt
     GPIO_SetPinValue(UltraSonic_PORT_GPIO, PIN_Trigger, GPIO_LOW);
 }
 
