@@ -18,7 +18,7 @@ void H_BRIDGE_Initialize()
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_AFIO);
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
 	GPIO_SetPinMode(GPIO_PORTA, H_BRIDGE_PIN_EA, GPIO_OUTPUT_ALT_PP_10MHZ);
-	TIMER_Init(TIMER2, TIMER_CHANNEL_1);
+	TIMER_Init(TIMER_NUM_2, TIMER_CHANNEL_1);
 }
 
 void H_BRIDGE_SetDirection(u8 Direction)
@@ -41,5 +41,5 @@ void H_BRIDGE_SetDirection(u8 Direction)
 }
 void H_BRIDGE_SetSpeed(u8 speedPercentage)
 {
-	TIMER_PWM(speedPercentage, TIMER2, TIMER_CHANNEL_1);
+	TIMER_PWM(speedPercentage, TIMER_NUM_2, TIMER_CHANNEL_1);
 }

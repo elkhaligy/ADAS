@@ -16,7 +16,11 @@ In PWM mode (1 or 2),TIMx_CNT and TIMx_CCRx are always compared to determine whe
 #define TIMER_CHANNEL_2 1
 #define TIMER_CHANNEL_3 2
 #define TIMER_CHANNEL_4 3
-#define TIMER2 0
+
+#define TIMER_NUM_2 0
+#define TIMER_NUM_3 1
+#define TIMER_NUM_4 2
+#define TIMER_NUM_5 3
 
 /**
  * @brief Initializing the timer2
@@ -31,5 +35,12 @@ void TIMER_Init(u8 TIMER_NUMBER, u8 TIMER_CHANNEL);
  */
 
 void TIMER_PWM(u8 PWM_PERCENTAGE, u8 TIMER_NUMBER, u8 TIMER_CHANNEL);
+
+void TIMER_startCounting(u8 TIMER_NUMBER);
+
+u16 TIMER_elapsedTicks(u8 TIMER_NUMBER);
+
+void TIMER_stopCounting(u8 TIMER_NUMBER);
+
 
 #endif /* TIMER_INTERFACE */

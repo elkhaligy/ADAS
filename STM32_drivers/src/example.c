@@ -20,6 +20,7 @@ int main(void)
     RCC_Init(); // system internal clock
     RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
     RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOC);
+    RCC_PeripheralClockEnable(RCC_APB1, RCC_TIM3); //RCC for Timer 3
     USART_Start(BAUD_RATE_115200, USART_1);
     GPIO_SetPinMode(GPIO_PORTC, PIN13, GPIO_OUTPUT_GP_PP_10MHZ); // built-in LED
     GPIO_SetPinValue(GPIO_PORTC, PIN13, GPIO_HIGH);
@@ -54,7 +55,7 @@ void EXTI0_IRQHandler(void)
     static u8 f = 0;
     if (f == 0)
     {
-        TICK_StartCounting();
+        TIMER_startCounting(TIMER_NUM_3);
         EXTI_void_SelectLineTriggerType(0, EXTI_LineTrigger_FALLING);
 
         f = 1;
@@ -62,10 +63,10 @@ void EXTI0_IRQHandler(void)
     else if (f == 1)
     {
 
-        Ticks = TICK_ElapsedTicks();
+        Ticks = TIMER_elapsedTicks(TIMER_NUM_3);
         Time = (float)Ticks / 1000000;
         Distance = (Time / 2) * 34300;
-        TICK_Stop();
+        TIMER_stopCounting(TIMER_NUM_3);
         f = 0;
         EXTI_void_SelectLineTriggerType(0, EXTI_LineTrigger_RISING);
         // GPIO_SetPinValue(GPIO_PORTC, PIN13, x);
