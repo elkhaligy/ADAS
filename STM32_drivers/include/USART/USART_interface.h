@@ -11,22 +11,31 @@
 #define USART_4 3
 #define USART_5 4
 
-//Init/Disable Functions
+// Init/Disable Functions
 void USART_SetBaudRate(u16 Port_Val, u8 USART_NUM);
 void USART_EnableUSART(u8 USART_NUM);
 void USART_DisableUSART(u8 USART_NUM);
 
-//Interrupt Enable Functions
+void USART_DMA_Receive_Init(u8 USART_NUM, u16 BaudRate);
+
+void USART_DMA_Transmit_Init(u8 USART_NUM, u16 BaudRate);
+
+void USART1_EnableTxDMA();
+
+void USART1_EnableRxDMA();
+void USART1_ClearTC();
+
+// Interrupt Enable Functions
 void USART_TransmitInterruptEnable(u8 USART_NUM);
 void USART_ReceiveInterruptEnable(u8 USART_NUM);
 
-//Send/Recieve Functions
+// Send/Recieve Functions
 
-void USART_SendByte(u8 USART_NUM,u8 value);
+void USART_SendByte(u8 USART_NUM, u8 value);
 u8 USART_ReceiveByte(u8 USART_NUM);
-void USART_SendString(u8 USART_NUM,u8 *String);
+void USART_SendString(u8 USART_NUM, u8 *String);
 
-//Other Functions
+// Other Functions
 void USART_ClearRXNE(u8 USART_NUM);
 void USART_Start(u16 port_val, u8 USART_NUM);
 
