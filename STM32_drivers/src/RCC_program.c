@@ -25,18 +25,18 @@ void RCC_Init(void) {
     RCC_CR |= (RCC_PLL_ON << 24);
 
     RCC_CFGR = 0;
-    if (RCC_SYSTEM_CLOCK_SWITCH < 4)
-        RCC_CFGR |= (RCC_SYSTEM_CLOCK_SWITCH << 0);
-    RCC_CFGR |= (RCC_AHB_PRESCALER << 4);
-    RCC_CFGR |= (RCC_APB2_PRESCALER << 11);
-    RCC_CFGR |= (RCC_APB1_PRESCALER << 8);
-    RCC_CFGR |= (RCC_ADC_PRESCALER << 14);
-    RCC_CFGR |= (RCC_PLL_SRC << 16);
-    RCC_CFGR |= (RCC_PLL_HSE_DIV << 17);
-    if (RCC_PLL_MUL > 1 && RCC_PLL_MUL < 17)
-        RCC_CFGR |= ((RCC_PLL_MUL - 2) << 18);
-    if (RCC_MCO_SRC > -3 && RCC_MCO_SRC < 3)
-        RCC_CFGR |= ((RCC_MCO_SRC + 5) << 24);
+    // if (RCC_SYSTEM_CLOCK_SWITCH < 4)
+    //     RCC_CFGR |= (RCC_SYSTEM_CLOCK_SWITCH << 0);
+    // RCC_CFGR |= (RCC_AHB_PRESCALER << 4);
+    // RCC_CFGR |= (RCC_APB2_PRESCALER << 11);
+    // RCC_CFGR |= (RCC_APB1_PRESCALER << 8);
+    // RCC_CFGR |= (RCC_ADC_PRESCALER << 14);
+    // RCC_CFGR |= (RCC_PLL_SRC << 16);
+    // RCC_CFGR |= (RCC_PLL_HSE_DIV << 17);
+    // if (RCC_PLL_MUL > 1 && RCC_PLL_MUL < 17)
+    //     RCC_CFGR |= ((RCC_PLL_MUL - 2) << 18);
+    // if (RCC_MCO_SRC > -3 && RCC_MCO_SRC < 3)
+    //     RCC_CFGR |= ((RCC_MCO_SRC + 5) << 24);
 }
 
 void RCC_PeripheralClockEnable(u8 Bus, Peripherals_t Perphiral) {
