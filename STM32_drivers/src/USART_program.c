@@ -14,12 +14,40 @@
 
 void USART_Start(u16 port_val, u8 USART_NUM)
 {
-	RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
-	RCC_PeripheralClockEnable(RCC_APB2, RCC_USART1);
-	GPIO_SetPinMode(GPIO_PORTA, USART_TxPin, GPIO_OUTPUT_ALT_OD_2MHZ);
 	USART_SetBaudRate(port_val, USART_NUM);
 	USART_EnableUSART(USART_NUM);
 }
+void USART_DMA_Transmit_Init(u8 USART_NUM, u16 BaudRate)
+{
+	// Set Baud Rate
+	USART_SetBaudRate(USART_NUM, BaudRate);
+	// Clear TC Flag Before Beginning
+	USART1_ClearTC();
+	// Enable Tx and Rx and DMA Transmit
+	USART1_EnableTxDMA();
+	// Enable USART
+	USART_EnableUSART(USART_NUM);
+}
+void USART_DMA_Receive_Init(u8 USART_NUM, u16 BaudRate)
+{
+	// Set Baud Rate
+	// USART_SetBaudRate(USART_NUM,BaudRate);
+	// Clear TC Flag Before Beginning
+	// USART1_ClearTC();
+	// Enable Tx and Rx and DMA Transmit
+	USART1_EnableRxDMA();
+	// Enable USART
+	USART_EnableUSART(USART_NUM);
+}
+void USART1_EnableTxDMA()
+{
+	SET_BIT(USART1_PER->CR3_REG, 7);
+}
+void USART1_EnableRxDMA()
+{
+	SET_BIT(USART1_PER->CR3_REG, 6);
+}
+
 void USART_SetBaudRate(u16 port_val, u8 USART_NUM)
 {
 	switch (USART_NUM)
