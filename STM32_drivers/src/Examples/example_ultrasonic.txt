@@ -9,7 +9,7 @@
 #include "EXTI/EXTI_interface.h"
 #include "NVIC/NVIC_interface.h"
 
-#include "H_BRIDGE/H_BRIDGE_interface.h"
+#include "MOTORS/MOTORS_interface.h"
 #include "ULTRASONIC/UltraSonic_interface.h"
 
 u16 Ticks = 0;
