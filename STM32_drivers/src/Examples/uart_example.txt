@@ -5,7 +5,7 @@
 #include "SYSTICK/SYSTICK_interface.h"
 #include "USART/USART_interface.h"
 #include "TIMER/TIMER_interface.h"
-#include "H_BRIDGE/H_BRIDGE_interface.h"
+#include "MOTORS/MOTORS_interface.h"
 
 int main3(void)
 {
