@@ -44,6 +44,8 @@ void DMA_EnableTransferCompleteInterrupt(u8 ChannelNumber);
 u8 DMA_GetInterruptStatus();
 void DMA_ClearInterruptStatus();
 
+void UART1_DMA_receiveInit(void);
+
 void DMA_ControlCircularMode(u8 ChannelNumber,u8 state);
 void DMA_Channel3_ClearInterruptStatus(void);
 void DMA_Channel5_ClearInterruptStatus(void);
