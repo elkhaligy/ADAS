@@ -3,8 +3,8 @@
 // public macros of buses
 // public macros for buses peripherals locations
 
-#ifndef RCC_INTERFACE_H_
-#define RCC_INTERFACE_H_
+#ifndef RCC_INTERFACE
+#define RCC_INTERFACE
 
 // Buses
 #define RCC_AHB 0
@@ -100,7 +100,7 @@ typedef enum {
  * @brief Initialize system clock
  *
  */
-void RCC_Init(void);
+void RCC_systemInit(void);
 
 /**
  * @brief Enable peripheral clock
@@ -118,4 +118,4 @@ void RCC_PeripheralClockEnable(u8 Bus, Peripherals_t Perphiral);
  */
 void RCC_PeripheralClockDisable(u8 Bus, Peripherals_t Perphiral);
 
-#endif /* RCC_INTERFACE_H_ */
+#endif /* RCC_INTERFACE */
