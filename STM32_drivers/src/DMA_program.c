@@ -115,21 +115,4 @@ void DMA_ControlCircularMode(u8 ChannelNumber,u8 state){
 
 }
 
-u8 USART_DMA_ReceiveArr[10] = {0};
 
-void UART1_DMA_receiveInit()
-{
-    DMA_SetPeripheralAddress(4, (u32 *)0x40013804);
-    DMA_SetMemoryAddress(4, (u32 *)USART_DMA_ReceiveArr);
-    DMA_SetDataSize(4, 10); // need to understand
-    DMA_ChannelPriority(4);
-    DMA_ControlDataTransferDir(4, 0);
-    DMA_DisableMemorytoMemoryMode(4);
-    DMA_ControlCircularMode(4, 1);
-    DMA_ControlPeripheralIncrementMode(4, 0);
-    DMA_ControlMemoryIncrementMode(4, 1);
-    DMA_SetPeripheralSize(4, DMA_8bits);
-    DMA_SetMemorySize(4, DMA_8bits);
-    DMA_EnableTransferCompleteInterrupt(4);
-    DMA_ActivateChannel(4);
-}
