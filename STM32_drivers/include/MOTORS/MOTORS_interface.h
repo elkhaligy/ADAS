@@ -1,6 +1,6 @@
-#ifndef _MOTORS_INTERFACE_H
-#define _MOTORS_INTERFACE_H
-
+#ifndef MOTORS_INTERFACE
+#define MOTORS_INTERFACE
+#include "MOTORS_config.h"
 // Directions
 #define STOP 0
 #define FORWARD 1
@@ -27,4 +27,4 @@ void MOTORS_SetDirection(u8 Direction);
  * @param speed percentage (0 --> 100)
  */
 void MOTORS_SetSpeed(u8 speedPercentage);
-#endif
+#endif /* MOTORS_INTERFACE */

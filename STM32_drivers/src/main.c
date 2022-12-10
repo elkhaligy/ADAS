@@ -13,6 +13,7 @@
 #include "MOTORS/MOTORS_interface.h"
 #include "ULTRASONIC/UltraSonic_interface.h"
 
+
 u8 USART_DMA_ReceiveArr[10] = {0};
 void UART1_DMA_receiveInit()
 {
@@ -32,18 +33,9 @@ void UART1_DMA_receiveInit()
 }
 int main(void)
 {
-    RCC_Init();
-    RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
-    RCC_PeripheralClockEnable(RCC_AHB, RCC_DMA1);
-    RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOC);
-    RCC_PeripheralClockEnable(RCC_APB2, RCC_USART1);
-
-    GPIO_SetPinMode(GPIO_PORTC, PIN13, GPIO_OUTPUT_GP_PP_10MHZ);
-    GPIO_SetPinMode(GPIO_PORTA, USART_TxPin, GPIO_OUTPUT_ALT_OD_2MHZ);
-    GPIO_SetPinMode(GPIO_PORTA, PIN10, GPIO_INPUT_FLOATING);
-
-    GPIO_SetPinValue(GPIO_PORTC, PIN13, 1);
-
+    
+    RCC_systemInit();
+    GPIO_init();
     NVIC_voidEnableInterrupt(15);
     UART1_DMA_receiveInit();
     USART_Start(BAUD_RATE_115200, USART_1);
@@ -53,6 +45,18 @@ int main(void)
     {
     }
     return 0;
+}
+void RCC_init(){
+    RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
+    RCC_PeripheralClockEnable(RCC_AHB, RCC_DMA1);
+    RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOC);
+    RCC_PeripheralClockEnable(RCC_APB2, RCC_USART1);
+}
+void GPIO_init(){
+    GPIO_SetPinMode(GPIO_PORTC, PIN13, GPIO_OUTPUT_GP_PP_10MHZ);
+    GPIO_SetPinMode(GPIO_PORTA, USART_TxPin, GPIO_OUTPUT_ALT_OD_2MHZ);
+    GPIO_SetPinMode(GPIO_PORTA, PIN10, GPIO_INPUT_FLOATING);
+    GPIO_SetPinValue(GPIO_PORTC, PIN13, 1);
 }
 void DMA1_Channel5_IRQHandler(void)
 {

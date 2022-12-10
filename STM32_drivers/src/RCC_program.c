@@ -12,7 +12,7 @@
 #include <RCC/RCC_interface.h>
 #include <RCC/RCC_private.h>
 
-void RCC_Init(void) {
+void RCC_systemInit(void) {
     // RCC_CR -> HSION
     RCC_CR = 0;
     RCC_CR |= (RCC_HSI_ON << 0);
