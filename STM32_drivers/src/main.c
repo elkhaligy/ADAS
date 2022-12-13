@@ -13,20 +13,21 @@
 #include "MOTORS/MOTORS_interface.h"
 #include "ULTRASONIC/UltraSonic_interface.h"
 
-u8 receiveBuffer[1] = {0};
 void RCC_init();
 void GPIO_init();
-
+u8 receiveBuffer[1] = {0};
+u8 count = 0;
 int main(void)
 {
-    RCC_systemInit();                    // system clock
-    RCC_init();                          // general clock enable
-    GPIO_init();                         // general gpio enable
-    MOTORS_init();                       // motor driver gpio/clock
+    
+    RCC_systemInit(); // system clock
+    RCC_init();       // general clock enable
+    GPIO_init();      // general gpio enable
+    MOTORS_init();    // motor driver gpio/clock
 
-    DMA_UART1_receive(receiveBuffer, 1); // enable DMA processor for UART1 receive
-    USART_enableReceiveWithDMA(USART_1); // enable UART1 receive DMA bit
-    USART_enableTransmitWithDMA(USART_1); // enable UART1 transmit DMA bit
+    DMA_UART1_receive(receiveBuffer, 1);    // enable DMA processor for UART1 receive
+    USART_enableReceiveWithDMA(USART_1);    // enable UART1 receive DMA bit
+    USART_enableTransmitWithDMA(USART_1);   // enable UART1 transmit DMA bit
     USART_Start(BAUD_RATE_115200, USART_1); // start UART1
 
     while (1)
@@ -34,6 +35,8 @@ int main(void)
         if (receiveBuffer[0] == 's')
         {
             DMA_UART1_transmit((u8 *)"Motors: stopped\n", 17); // send status
+            DMA_UART1_transmit(&count, 1);
+            count++;
             MOTORS_setDirection(STOP);                         // stop motors
             receiveBuffer[0] = '0';                            // reset buffer
         }

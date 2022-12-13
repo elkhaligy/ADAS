@@ -6,7 +6,7 @@
 #include "DMA/DMA_private.h"
 
 u8 UART_transferDone = 1;
-
+// FIXME DMA transmit overlaps if two transmissions are called  
 /**
  * @brief Receive serial data on UART1 peripheral without involvment of the CPU
  * @note DMA here is programmed not to initiate any interrupt because it is not needed
