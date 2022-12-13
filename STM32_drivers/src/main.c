@@ -19,12 +19,13 @@ u8 receiveBuffer[1] = {0};
 u8 count = 0;
 int main(void)
 {
-    
+
     RCC_systemInit(); // system clock
     RCC_init();       // general clock enable
     GPIO_init();      // general gpio enable
     MOTORS_init();    // motor driver gpio/clock
 
+    NVIC_voidEnableInterrupt(14);           // enable DMA1 channel4 interrupt
     DMA_UART1_receive(receiveBuffer, 1);    // enable DMA processor for UART1 receive
     USART_enableReceiveWithDMA(USART_1);    // enable UART1 receive DMA bit
     USART_enableTransmitWithDMA(USART_1);   // enable UART1 transmit DMA bit
@@ -35,8 +36,6 @@ int main(void)
         if (receiveBuffer[0] == 's')
         {
             DMA_UART1_transmit((u8 *)"Motors: stopped\n", 17); // send status
-            DMA_UART1_transmit(&count, 1);
-            count++;
             MOTORS_setDirection(STOP);                         // stop motors
             receiveBuffer[0] = '0';                            // reset buffer
         }
