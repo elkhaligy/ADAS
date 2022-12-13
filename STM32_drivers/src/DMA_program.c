@@ -14,6 +14,7 @@ u8 UART_transferDone = 1;
  * @param buffer
  * @param size
  */
+
 void DMA_UART1_receive(u8 *buffer, u32 size)
 {
 	CLR_BIT(DMA->Channel[DMA_CH5].CCR_REG, 0);			// disabe DMA channel
@@ -38,24 +39,30 @@ void DMA_UART1_receive(u8 *buffer, u32 size)
  */
 void DMA_UART1_transmit(u8 *buffer, u32 size)
 {
-		CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 0);			// disabe DMA channel
-		CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 14);			// disable memory-to-memory mode
-		DMA->Channel[DMA_CH4].CCR_REG |= (0b11 << 12);		// channel priority high
-		DMA->Channel[DMA_CH4].CCR_REG |= (DMA_8bits << 8);	// peripheral data size 8bit
-		DMA->Channel[DMA_CH4].CCR_REG |= (DMA_8bits << 10); // memory data size 8bit
-		CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 6);			// disable peripheral increment
-		SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 7);			// enable memory increment
-		CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 5);			// disable circular mode
-		SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 4);			// transfer direction to peripheral
-		SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 1);			// enable transfer complete interrupt
-		DMA->Channel[DMA_CH4].CNDTR_REG = size;				// number of data to transfer 1 byte
-		DMA->Channel[DMA_CH4].CPAR_REG = (u32)0x40013804;	// peripheral address
-		DMA->Channel[DMA_CH4].CMAR_REG = (u32)buffer;		// memory address
-		SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 0);			// activate channel
+	while (UART_transferDone != 1)
+		;
+	UART_transferDone = 0;
+	CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 0);			// disabe DMA channel
+	CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 14);			// disable memory-to-memory mode
+	DMA->Channel[DMA_CH4].CCR_REG |= (0b11 << 12);		// channel priority high
+	DMA->Channel[DMA_CH4].CCR_REG |= (DMA_8bits << 8);	// peripheral data size 8bit
+	DMA->Channel[DMA_CH4].CCR_REG |= (DMA_8bits << 10); // memory data size 8bit
+	CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 6);			// disable peripheral increment
+	SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 7);			// enable memory increment
+	CLR_BIT(DMA->Channel[DMA_CH4].CCR_REG, 5);			// disable circular mode
+	SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 1);			// enable transfer complete interrupt
+	SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 4);			// transfer direction to peripheral
+	SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 1);			// enable transfer complete interrupt
+	DMA->Channel[DMA_CH4].CNDTR_REG = size;				// number of data to transfer 1 byte
+	DMA->Channel[DMA_CH4].CPAR_REG = (u32)0x40013804;	// peripheral address
+	DMA->Channel[DMA_CH4].CMAR_REG = (u32)buffer;		// memory address
+	SET_BIT(DMA->Channel[DMA_CH4].CCR_REG, 0);			// activate channel
 }
-// void DMA1_Channel5_IRQHandler(void)
-// {
-// }
+void DMA1_Channel4_IRQHandler(void)
+{
+	UART_transferDone = 1;
+	SET_BIT(DMA->IFCR_REG, 12); // clear transfer complete flag
+}
 // void DMA_ActivateChannel(u8 ChannelNumber)
 // {
 // 	SET_BIT(DMA->Channel[ChannelNumber].CCR_REG, 0);
