@@ -26,6 +26,8 @@ void TICK_Stop(void);
  */
 void TICK_Delay(u32 Millis);
 
+void TICK_DelayUS(u32 Micros);
+
 /**
  * @brief Starts a periodic wait (asynchronous)
  *
@@ -60,7 +62,6 @@ u32 TICK_RemainingTicks(void);
  * @return u32
  */
 u32 TICK_ElapsedTicks(void);
-
 
 void TICK_StartCounting(void);
 
