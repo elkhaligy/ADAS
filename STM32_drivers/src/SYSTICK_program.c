@@ -45,6 +45,28 @@ void TICK_Delay(u32 Millis) {
     SYSTICK->VAL = 0;
 }
 
+void TICK_DelayUS(u32 Micros)
+{
+    /* Disable the systick interrupt
+     * Set LOAD value
+     * start the timer
+     * empty loop until the flag is raised
+     * reset the flag
+     * Reset the LOAD register
+     * stop the timer
+     */
+    CLR_BIT(SYSTICK->CTRL, 1);
+    SYSTICK->LOAD = (Micros - 1) & 0x00FFFFFF;
+    SYSTICK->VAL = 0;
+    SET_BIT(SYSTICK->CTRL, 0);
+    while (!(GET_BIT(SYSTICK->CTRL, 16)))
+    {
+        __asm("NOP");
+    }
+    CLR_BIT(SYSTICK->CTRL, 0);
+    SYSTICK->VAL = 0;
+}
+
 void TICK_PeriodicInterval(u32 Millis, void (*ptr)(void)) {
     /* Set LOAD value
      * assign the callback function to the handler
