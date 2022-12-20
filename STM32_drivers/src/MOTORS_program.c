@@ -15,7 +15,7 @@ void MOTORS_init()
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);			// enable gpioa clock
 
 	// TIMER
-	TIMER_Init(TIMER_NUM_2, TIMER_CHANNEL_1); // enable timer 2 channel 1
+	TIMER_Init(TIMER_NUM_2, TIMER_CHANNEL_2); // enable timer 2 channel 1
 
 	// GPIO
 	GPIO_SetPinMode(MOTORS_PORT, MOTORS_PIN_M1IN1, GPIO_OUTPUT_GP_PP_10MHZ); // motor driver gpio mode
@@ -36,8 +36,8 @@ void MOTORS_setDirection(u8 Direction)
 	case STOP: // make all motors stop
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN1, GPIO_LOW);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN2, GPIO_LOW);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN1, 1);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN2, 1);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN1, 0);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN2,0);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN1, GPIO_LOW);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN2, GPIO_LOW);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M4IN1, GPIO_LOW);
@@ -65,23 +65,25 @@ void MOTORS_setDirection(u8 Direction)
 		break;
 	case RIGHT: // make the two motors on the left of the car rotate clockwise
 				// and the two motors on the right of the car rotate anticlockwise
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN1, GPIO_HIGH);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN2, GPIO_LOW);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN1, GPIO_HIGH);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN2, GPIO_LOW);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN1, GPIO_LOW);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN2, GPIO_HIGH);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN1, GPIO_HIGH);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN2, GPIO_LOW);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN1, GPIO_LOW);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN2, GPIO_HIGH);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M4IN1, GPIO_LOW);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M4IN2, GPIO_HIGH);
 		break;
+		// M2 M3 RIGHT WHEELS
+		// M1 M4 LEFT WHEELS
 	case LEFT: // make the two motors on the right of the car rotate clockwise
 			   // and the two motors on the left of the car rotate anticlockwise
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN1, GPIO_LOW);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN2, GPIO_HIGH);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN1, GPIO_LOW);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M2IN2, GPIO_HIGH);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN1, GPIO_HIGH);
-		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN2, GPIO_LOW);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN1, GPIO_LOW);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M3IN2, GPIO_HIGH);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN1, GPIO_HIGH);
+		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M1IN2, GPIO_LOW);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M4IN1, GPIO_HIGH);
 		GPIO_SetPinValue(MOTORS_PORT, MOTORS_PIN_M4IN2, GPIO_LOW);
 		break;
@@ -89,5 +91,5 @@ void MOTORS_setDirection(u8 Direction)
 }
 void MOTORS_setSpeed(u8 speedPercentage)
 {
-	TIMER_PWM(speedPercentage, TIMER_NUM_2, TIMER_CHANNEL_1); // change pwm signal with percentage
+	TIMER_PWM(speedPercentage, TIMER_NUM_2, TIMER_CHANNEL_2); // change pwm signal with percentage
 }

@@ -15,19 +15,18 @@
 
 void RCC_init();
 void GPIO_init();
-u8 receiveBuffer[1] = { 0 };
+u8 receiveBuffer[1] = {0};
 u8 count = 0;
 u32 data = 0;
-u32 data2 = 0;
-
-u32 receive_data() {
-	u32 code = 0;
+u32 receive_data()
+{
 	while (!GPIO_GetPinValue(GPIO_PORTA, PIN1))
 		;
 	while (GPIO_GetPinValue(GPIO_PORTA, PIN1))
 		;
 
-	for (int i = 0; i < 24; i++) {
+	for (int i = 0; i < 24; i++)
+	{
 		count = 0;
 		while (!(GPIO_GetPinValue(GPIO_PORTA, PIN1)))
 			; // wait for pin to go high.. this is 562.5us LOW
@@ -39,89 +38,90 @@ u32 receive_data() {
 		}
 
 		if (count > 12) // if the space is more than 1.2 ms
-				{
-			//SET_BIT(code, 31 - i);
+		{
+			// SET_BIT(code, 31 - i);
 			data |= (1 << (31 - i)); // write 1
 		}
 
-		else{
-			//CLR_BIT(code, 31 - i);
+		else
+		{
+			// CLR_BIT(code, 31 - i);
 			data &= ~(1 << (31 - i)); // write 0
 		}
 	}
 	return data;
-
 }
-int main(void) {
+
+int main(void)
+{
+
 	RCC_systemInit(); // system clock
-	RCC_init();       // general clock enable
-	GPIO_init();      // general gpio enable
+	RCC_init();		  // general clock enable
+	GPIO_init();	  // general gpio enable
+	MOTORS_init();	  // motor driver gpio/clock
 
-	GPIO_SetPinMode(GPIO_PORTA, 1, GPIO_INPUT_PULLING); // pin A0 (interrupt) as input
-	GPIO_SetPinValue(GPIO_PORTA, 1, GPIO_HIGH);
+	NVIC_voidEnableInterrupt(NVIC_DMA1_Channel4); // enable DMA1 channel4 interrupt
+	DMA_UART1_receive(receiveBuffer, 1);		  // enable DMA processor for UART1 receive
+	USART_enableReceiveWithDMA(USART_1);		  // enable UART1 receive DMA bit
+	USART_enableTransmitWithDMA(USART_1);		  // enable UART1 transmit DMA bit
+	USART_Start(BAUD_RATE_115200, USART_1);		  // start UART1
 
-	//EXTI_void_ControlInterruptLine(1, EXTI_LINE_ENABLE);          // enable external interrupt line 0 (EXTI0) (A0)
-	//EXTI_void_SelectLineTriggerType(1, EXTI_LineTrigger_FALLING); // select trigger type (rising edge)
-	//NVIC_voidEnableInterrupt(7);                                  // enable interrupt 6 (EXTI0)
+	
+	MOTORS_setSpeed(100);
+	MOTORS_setDirection(FORWARD);
+	TICK_Delay(2000);
+	MOTORS_setDirection(STOP);
+	TICK_Delay(1000);
+	MOTORS_setDirection(BACKWARD);
+	TICK_Delay(2000);
+	MOTORS_setDirection(STOP);
+	TICK_Delay(1000);
+	MOTORS_setDirection(RIGHT);
+	TICK_Delay(1000);
+	MOTORS_setDirection(STOP);
+	TICK_Delay(1000);
+	MOTORS_setDirection(LEFT);
+	TICK_Delay(1000);
+	MOTORS_setDirection(STOP);
+	while (1)
+	{
 
-//    NVIC_voidEnableInterrupt(14);           // enable DMA1 channel4 interrupt
-//    DMA_UART1_receive(receiveBuffer, 1);    // enable DMA processor for UART1 receive
-//    USART_enableReceiveWithDMA(USART_1);    // enable UART1 receive DMA bit
-//    USART_enableTransmitWithDMA(USART_1);   // enable UART1 transmit DMA bit
-//    USART_Start(BAUD_RATE_115200, USART_1); // start UART1
-
-	while (1) {
-		//DMA_UART1_transmit((u8 *)receiveBuffer, 1);
-		//data=0;
-		while (GPIO_GetPinValue(GPIO_PORTA, PIN1))
-			;
-		data = receive_data();
-		TICK_Delay(100);
-		//DMA_UART1_transmit(&data, 1);
-		// GPIO_SetPinValue(GPIO_PORTC, PIN13, 0);
-		// TICK_Delay(250);
-		// GPIO_SetPinValue(GPIO_PORTC, PIN13, 1);
-		// TICK_Delay(250);
+		// if (data == 0xff3800)
+		// {
+		// 	MOTORS_setDirection(STOP); // stop motors
+		// }
+		// else if (data == 0xff1800)
+		// {
+		// 	MOTORS_setDirection(FORWARD);
+		// }
+		// else if (data == 0xff4a00)
+		// {
+		// 	MOTORS_setDirection(BACKWARD);
+		// }
+		// else if (data == 0xff5a00)
+		// {
+		// 	MOTORS_setDirection(RIGHT);
+		// }
+		// else if (data == 0xff1000)
+		// {
+		// 	MOTORS_setDirection(LEFT);
+		// }
 	}
 	return 0;
 }
-void EXTI1_IRQHandler(void) {
-	while (!GPIO_GetPinValue(GPIO_PORTA, PIN1))
-		;
-	while (GPIO_GetPinValue(GPIO_PORTA, PIN1))
-		;
-
-	for (int i = 0; i < 32; i++) {
-		count = 0;
-		while (!(GPIO_GetPinValue(GPIO_PORTA, PIN1)))
-			; // wait for pin to go high.. this is 562.5us LOW
-
-		while ((GPIO_GetPinValue(GPIO_PORTA, PIN1))) // count the space length while the pin is high
-		{
-			count++;
-			TICK_DelayUS(100);
-		}
-
-		if (count > 12) // if the space is more than 1.2 ms
-				{
-			data |= (1UL << (31 - i)); // write 1
-		}
-
-		else
-			data &= ~(1UL << (31 - i)); // write 0
-	}
-
-}
-void RCC_init() {
+void RCC_init()
+{
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOA);
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOB);
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_GPIOC);
 	RCC_PeripheralClockEnable(RCC_AHB, RCC_DMA1);
 	RCC_PeripheralClockEnable(RCC_APB2, RCC_USART1);
 }
-void GPIO_init() {
-	GPIO_SetPinMode(GPIO_PORTC, PIN13, GPIO_OUTPUT_GP_PP_10MHZ);
-	GPIO_SetPinMode(GPIO_PORTA, USART_TxPin, GPIO_OUTPUT_ALT_OD_2MHZ);
-	GPIO_SetPinMode(GPIO_PORTA, USART_RxPin, GPIO_INPUT_FLOATING);
-	GPIO_SetPinValue(GPIO_PORTC, PIN13, 1);
+void GPIO_init()
+{
+	//GPIO_SetPinMode(GPIO_PORTC, PIN13, GPIO_OUTPUT_GP_PP_10MHZ);
+	//GPIO_SetPinMode(GPIO_PORTA, PIN1, GPIO_INPUT_PULLING);
+	//GPIO_SetPinMode(GPIO_PORTA, USART_TxPin, GPIO_OUTPUT_ALT_OD_2MHZ);
+	//GPIO_SetPinMode(GPIO_PORTA, USART_RxPin, GPIO_INPUT_FLOATING);
+	//GPIO_SetPinValue(GPIO_PORTC, PIN13, 1);
 }
