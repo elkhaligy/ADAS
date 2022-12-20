@@ -17,6 +17,7 @@ void RCC_init();
 void GPIO_init();
 u8 receiveBuffer[1] = {0};
 u8 count = 0;
+
 u32 data = 0;
 u32 receive_data()
 {
@@ -85,7 +86,6 @@ int main(void)
 	MOTORS_setDirection(STOP);
 	while (1)
 	{
-
 		// if (data == 0xff3800)
 		// {
 		// 	MOTORS_setDirection(STOP); // stop motors
